@@ -13,6 +13,8 @@
             speed = 1.0;
         }
         console.log('Set speed to ' + speed);
-        document.querySelector('video').playbackRate = speed;
+        $video.playbackRate = speed;
     }
 })();
+
+document.querySelector('video').playbackRate;

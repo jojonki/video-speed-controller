@@ -8,12 +8,12 @@ function changeSpeed(tab, speed_cmd) {
         code: 'var speed_cmd="' + speed_cmd + '"'
     }, function () {
         chrome.tabs.executeScript(tab.id, { file: 'inject.js' },
-            function () {
+            function (result_speed) {
                 let options = {
                     type: "basic",
                     iconUrl: "./images/icon_128.png",
                     title: speed_cmd,
-                    message: "\"" + "test" + "\"",
+                    message: "Set speed to " + result_speed,
                 }
                 console.log("call notifications");
                 chrome.notifications.create('change_speed', options);
