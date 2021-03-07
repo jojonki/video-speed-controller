@@ -1,4 +1,5 @@
 # Video Speed Controller
+<img src="./images/screenshot.png"> </img>
 
 Video Speed Controller is a chrome extensions which enables video speed control by shortcuts.
 
