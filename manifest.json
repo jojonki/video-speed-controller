@@ -26,18 +26,26 @@
     "commands": {
         "speed-up": {
             "suggested_key": {
-                "default": "Ctrl+Shift+I",
-                "mac": "MacCtrl+Shift+I"
+                "default": "Ctrl+Shift+L",
+                "mac": "MacCtrl+Shift+L"
             },
             "description": "Speed Up",
             "global": false
         },
-        "copy-text-with-url-as-markdown": {
+        "speed-down": {
             "suggested_key": {
-                "default": "Ctrl+Shift+M",
-                "mac": "MacCtrl+Shift+M"
+                "default": "Ctrl+Shift+J",
+                "mac": "MacCtrl+Shift+J"
             },
-            "description": "Copy text with URL as markdown style",
+            "description": "Speed Down",
+            "global": false
+        },
+        "speed-neutral": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+K",
+                "mac": "MacCtrl+Shift+K"
+            },
+            "description": "Speed Neutral",
             "global": false
         }
     },
