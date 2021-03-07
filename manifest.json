@@ -1,0 +1,51 @@
+{
+    "name": "Video Speed Controller",
+    "version": "1.0",
+    "description": "Control HTML video speed.",
+    "permissions": [
+        "activeTab",
+        "notifications",
+        "https://youtube.com/*"
+    ],
+    "manifest_version": 2,
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "images/icon_16.png",
+            "32": "images/icon_32.png",
+            "48": "images/icon_48.png",
+            "128": "images/icon_128.png"
+        },
+        "default_title": "Copy Text with URL"
+    },
+    "commands": {
+        "speed-up": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+I",
+                "mac": "MacCtrl+Shift+I"
+            },
+            "description": "Speed Up",
+            "global": false
+        },
+        "copy-text-with-url-as-markdown": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+M",
+                "mac": "MacCtrl+Shift+M"
+            },
+            "description": "Copy text with URL as markdown style",
+            "global": false
+        }
+    },
+    "icons": {
+        "16": "icon.png",
+        "24": "icon.png",
+        "32": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    }
+}
