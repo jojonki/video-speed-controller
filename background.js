@@ -1,25 +1,47 @@
 'use strict';
 
 
-function changeSpeed(tab, speed_cmd) {
-    // console.log("called changeSpeed " + speed_cmd);
-    let url = tab.url;
-    chrome.tabs.executeScript(tab.id, {
-        code: 'var speed_cmd="' + speed_cmd + '"'
-    }, function () {
-        chrome.tabs.executeScript(tab.id, { file: 'inject.js' },
-            function (result_speed) {
-                let options = {
-                    type: "basic",
-                    iconUrl: "./images/icon_128.png",
-                    title: speed_cmd,
-                    message: "Set speed to " + result_speed,
-                }
-                console.log("call notifications");
-                chrome.notifications.create('change_speed', options);
-            });
-    });
+function injectChangeSpeed(speed_cmd) {
+    var $video = document.querySelector('video');
+    if ($video !== null) {
+        var speed = $video.playbackRate;
 
+        if (speed_cmd === "speed-up") {
+            speed += 0.25;
+        } else if (speed_cmd == 'speed-down') {
+            speed -= 0.25;
+        } else if (speed_cmd == 'speed-neutral') {
+            speed = 1.0;
+        } else {
+            console.warn('Unknown speed command: ' + speed_cmd);
+            speed = 1.0;
+        }
+        $video.playbackRate = speed;
+
+        return speed
+    }
+}
+function changeSpeed(tab, speed_cmd) {
+    console.log("called changeSpeed " + speed_cmd);
+
+    let tabId = tab.id;
+    chrome.scripting.executeScript(
+        {
+            target: { tabId: tabId },
+            func: injectChangeSpeed,
+            args: [speed_cmd],
+        },
+        (res) => {
+            let res_speed = res[0].result;
+            console.log(res_speed)
+            let options = {
+                type: "basic",
+                iconUrl: "./images/icon_128.png",
+                title: speed_cmd,
+                message: "Video speed: " + res_speed,
+            }
+            chrome.notifications.create(`change_speed-${Date.now()}`, options);
+        });
 }
 
 chrome.commands.onCommand.addListener(function (command) {
